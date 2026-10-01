@@ -1,0 +1,270 @@
+.journey-head .h2 {
+  margin-top: 22px;
+}
+.journey-cmd {
+  margin: 28px 0 0;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--fg);
+  white-space: pre-wrap;
+}
+.journey-cmd .prompt {
+  color: var(--signal);
+}
+.journey-cmd .dim {
+  color: var(--fg-3);
+}
+
+/* three columns: when · node · what */
+.hops {
+  --when: 210px;
+  --node: 56px;
+  --dot: 34px;
+  position: relative;
+  margin-top: clamp(56px, 10vh, 110px);
+}
+.hops-line {
+  position: absolute;
+  top: calc(var(--dot) / 2);
+  bottom: 0;
+  left: calc(var(--when) + var(--node) / 2);
+  width: 2px;
+  margin-left: -1px;
+  background: var(--line);
+}
+.hops-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+  background: linear-gradient(to bottom, var(--signal), var(--signal-2) 70%, var(--amber));
+}
+.hops-packet {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(79, 216, 255, 0.18),
+    0 0 18px 4px rgba(79, 216, 255, 0.7);
+}
+
+.hop {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--when) var(--node) minmax(0, 1fr);
+  padding-bottom: clamp(56px, 9vh, 96px);
+}
+.hop:last-child {
+  padding-bottom: 0;
+}
+
+.hop-when {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 6px;
+  padding-right: 24px;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--fg-2);
+}
+.hop-when .dim {
+  color: var(--fg-3);
+}
+.hop-when-inline {
+  display: none;
+}
+
+.hop-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+.hop-node span {
+  display: grid;
+  place-items: center;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--fg-3);
+  transition:
+    border-color 0.5s,
+    color 0.5s,
+    box-shadow 0.5s,
+    background-color 0.5s;
+}
+.hop.is-on .hop-node span {
+  border-color: var(--signal);
+  color: var(--fg);
+  background: #061620;
+  box-shadow: 0 0 22px rgba(79, 216, 255, 0.45);
+}
+.hop.is-dest.is-on .hop-node span {
+  border-color: var(--amber);
+  background: #1e1206;
+  box-shadow: 0 0 30px rgba(255, 181, 71, 0.6);
+}
+
+.hop-body {
+  padding-left: 24px;
+  max-width: 720px;
+}
+.hop-kind {
+  font-family: var(--mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.hop.is-dest .hop-kind {
+  color: var(--amber);
+}
+.hop-org {
+  margin-top: 10px;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+.hop-org {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hop-org .org-mark {
+  --size: 42px;
+}
+.hop.is-dest .hop-org .org-mark {
+  --size: 52px;
+}
+.hop.is-dest .hop-org {
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+}
+.hop-role {
+  margin-top: 6px;
+  font-size: 1.1rem;
+  color: var(--fg-2);
+}
+
+.hop-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 36px;
+  margin: 26px 0 0;
+}
+.hop-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.hop-stats dt {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--fg-3);
+}
+.hop-stats dd {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.hop-points {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--fg-2);
+}
+.hop-points li {
+  position: relative;
+  padding-left: 22px;
+}
+.hop-points li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--fg-3);
+  font-family: var(--mono);
+  font-size: 0.85em;
+  top: 0.1em;
+}
+.hop .chips {
+  margin-top: 22px;
+}
+.hop-deep {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--signal);
+}
+.hop.is-dest .hop-deep {
+  color: var(--amber);
+}
+.hop-deep svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s var(--ease);
+}
+.hop-deep:hover svg {
+  transform: translateY(-3px);
+}
+
+.journey-done {
+  margin-top: clamp(56px, 9vh, 96px);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--fg-2);
+  text-align: center;
+}
+.journey-done .ok {
+  color: var(--ok);
+}
+
+@media (max-width: 899px) {
+  .hops {
+    --when: 0px;
+    --node: 40px;
+    --dot: 30px;
+  }
+  .hop {
+    grid-template-columns: var(--node) minmax(0, 1fr);
+  }
+  .hop-when {
+    display: none;
+  }
+  .hop-when-inline {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--fg-3);
+  }
+  .hop-body {
+    padding-left: 12px;
+  }
+  .hop-org {
+    gap: 10px;
+  }
+  .hop-org .org-mark,
+  .hop.is-dest .hop-org .org-mark {
+    --size: 34px;
+  }
+  .hop-node span {
+    font-size: 0.65rem;
+  }
+}

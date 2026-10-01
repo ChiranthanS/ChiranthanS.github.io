@@ -1,0 +1,146 @@
+.ci {
+  --accent: var(--ok);
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(61, 220, 151, calc(0.035 + var(--glow) * 0.07)), transparent 70%),
+    var(--bg);
+}
+
+/* the loop is wide, so give it more of the row */
+@media (min-width: 900px) {
+  .ci .story-grid {
+    grid-template-columns: minmax(0, 4.6fr) minmax(0, 7.4fr);
+  }
+}
+
+/* ---------- the loop ---------- */
+.ci-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+.ci-lobe {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  fill: rgba(255, 255, 255, 0.07);
+  text-anchor: middle;
+}
+/* the "before" picture: a loop full of gaps */
+.ci-broken {
+  fill: none;
+  stroke: rgba(255, 107, 94, 0.55);
+  stroke-width: 2;
+  stroke-dasharray: 10 22;
+  opacity: 0;
+}
+.ci-live {
+  fill: none;
+  stroke: url(#ciGrad);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+
+.ci-token {
+  fill: #fff;
+  filter: drop-shadow(0 0 7px var(--ok));
+}
+.ci-tokens {
+  display: none;
+}
+.ci.is-animated .ci-tokens {
+  display: inline;
+}
+
+.ci-hub-code {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  fill: #032116;
+  text-anchor: middle;
+}
+.ci-hub-sub {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  fill: rgba(3, 33, 22, 0.72);
+  text-anchor: middle;
+}
+
+/* ---------- stages ---------- */
+.ci-stage-ring {
+  fill: #0b0e16;
+  stroke: rgba(255, 107, 94, 0.6);
+  stroke-width: 1.5;
+}
+.ci-stage-fail {
+  stroke: var(--warn);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.ci-stage-ok circle {
+  fill: #0b2a1d;
+  stroke: var(--ok);
+  stroke-width: 1.5;
+}
+.ci-stage-ok path {
+  fill: none;
+  stroke: var(--ok);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ci-stage-name {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--fg);
+}
+.ci-stage-tool {
+  font-family: var(--mono);
+  font-size: 12px;
+  fill: var(--fg-3);
+}
+
+/* ---------- Jenkins console ---------- */
+.ci-log-row {
+  display: grid;
+  grid-template-columns: 16px 0.9fr 1.4fr;
+  gap: 8px;
+  padding: 7px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--fg-2);
+}
+.story-panel-head + .ci-log-row {
+  border-top: 0;
+}
+.ci-log-tick {
+  color: var(--ok);
+}
+.ci-log-stage {
+  color: var(--fg);
+}
+.ci-log-final {
+  display: block;
+  padding-bottom: 12px;
+  color: var(--ok);
+  font-weight: 600;
+}
+
+@media (max-width: 899px) {
+  .ci-stage-tool {
+    display: none;
+  }
+  .ci-stage-name {
+    font-size: 22px;
+    letter-spacing: 0.06em;
+  }
+  .ci-lobe {
+    display: none;
+  }
+}

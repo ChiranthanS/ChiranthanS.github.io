@@ -1,0 +1,164 @@
+.contact {
+  position: relative;
+  background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(79, 216, 255, 0.07), transparent 70%), var(--bg);
+}
+.contact-pin {
+  padding: clamp(96px, 14vh, 160px) 0;
+}
+.contact-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---------- handshake ---------- */
+.hs {
+  --est: 1;
+  width: 100%;
+  max-width: 640px;
+  margin-top: 28px;
+  overflow: visible;
+}
+.hs-pill {
+  fill: rgba(255, 255, 255, 0.04);
+  stroke: var(--line-2);
+}
+.hs-name {
+  font-family: var(--mono);
+  font-size: 15px;
+  fill: var(--fg);
+  text-anchor: middle;
+}
+.hs-life {
+  stroke: var(--line-2);
+  stroke-dasharray: 3 5;
+}
+.hs-state {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  fill: var(--fg-3);
+  text-anchor: middle;
+}
+.hs-state.s0,
+.hs-state.s1 {
+  opacity: 0;
+  visibility: hidden;
+}
+.hs-state.s2 {
+  fill: var(--ok);
+}
+.hs-line {
+  stroke: var(--signal);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+}
+.hs-head {
+  fill: var(--signal);
+}
+.hs-flag {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  fill: var(--fg);
+  text-anchor: middle;
+}
+.hs-detail {
+  font-family: var(--mono);
+  font-size: 11px;
+  fill: var(--fg-3);
+  text-anchor: middle;
+}
+.hs .hs-pill {
+  stroke: color-mix(in srgb, var(--ok) calc(var(--est) * 60%), var(--line-2));
+}
+
+/* ---------- copy ---------- */
+.contact-title {
+  margin-top: clamp(28px, 5vh, 56px);
+  font-size: clamp(2.6rem, 7vw, 6.4rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+.contact-title .line {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.04em 0.05em 0.12em;
+  margin: -0.04em -0.05em -0.12em;
+  vertical-align: top;
+}
+.contact-title .line > span {
+  display: inline-block;
+}
+.contact-lead {
+  margin-top: 22px;
+  max-width: 46ch;
+  color: var(--fg-2);
+  font-size: var(--t-lead);
+  text-wrap: balance;
+}
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+.contact-actions .btn-ghost {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  margin-top: 28px;
+}
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-2);
+  font-size: 0.92rem;
+  transition: color 0.25s;
+}
+.contact-links a:hover {
+  color: var(--fg);
+}
+.contact-links .ext {
+  width: 13px;
+  height: 13px;
+  opacity: 0.5;
+}
+
+/* ---------- pinned ---------- */
+.contact.is-animated .hs {
+  --est: 0;
+}
+.contact.is-animated .hs-state.s0 {
+  opacity: 1;
+  visibility: visible;
+}
+.contact.is-animated .contact-pin {
+  height: 100vh;
+  height: 100svh;
+  padding: var(--nav-h) 0 0;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 899px) {
+  .hs-detail {
+    display: none;
+  }
+  .hs-flag {
+    font-size: 18px;
+  }
+  .hs-name,
+  .hs-state {
+    font-size: 17px;
+  }
+}

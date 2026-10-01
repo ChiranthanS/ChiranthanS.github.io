@@ -1,0 +1,268 @@
+/* ==========================================================================
+   Pinned story sections. Each section sets its own --accent.
+   ========================================================================== */
+.story {
+  --accent: var(--amber);
+  --glow: 0;
+  position: relative;
+}
+
+.story-pin {
+  position: relative;
+  padding: clamp(96px, 14vh, 160px) 0;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* ---------- copy ---------- */
+.story-copy {
+  position: relative;
+  z-index: 2;
+}
+.story-steps {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.story-step-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.story-step .h3 {
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+}
+.story-step-body {
+  margin-top: 18px;
+  max-width: 38ch;
+  font-size: var(--t-lead);
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+.story-dots {
+  display: none;
+}
+.story-dot {
+  --fill: 0;
+  position: relative;
+  width: 34px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.story-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--fill));
+}
+
+/* ---------- visual ---------- */
+.story-visual {
+  position: relative;
+}
+/* static layout: the diagram stays in view while the steps scroll past */
+.story:not(.is-animated) .story-visual {
+  position: sticky;
+  top: calc(var(--nav-h) + 6vh);
+  align-self: start;
+}
+.story-diagram {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transform-origin: 50% 50%;
+}
+
+/* ---------- counters (stacked, one visible at a time) ---------- */
+.story-count {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.story-counter {
+  display: flex;
+  flex-direction: column;
+}
+.story-counter + .story-counter {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.story-count-num {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--accent);
+}
+.story-counter.tone-warn .story-count-num {
+  color: var(--warn);
+}
+.story-count-lbl {
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+/* ---------- terminal-style panel ---------- */
+.story-panel {
+  margin-top: 28px;
+  max-width: 420px;
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: rgba(10, 12, 18, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  overflow: hidden;
+}
+.story-panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg);
+}
+.story-panel-head .ok {
+  color: var(--ok);
+  white-space: nowrap;
+}
+
+/* ---------- rotating badge ring ---------- */
+.story-badge-band {
+  fill: none;
+  stroke: rgba(8, 8, 8, 0.86);
+  stroke-width: 22;
+}
+.story-badge-text {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  fill: var(--accent);
+  dominant-baseline: central;
+  transform-box: view-box;
+  animation: story-spin 24s linear infinite;
+}
+@keyframes story-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Pinned layout — only when motion is allowed
+   ========================================================================== */
+.story.is-animated .story-pin {
+  height: 100vh;
+  height: 100svh;
+  padding: calc(var(--nav-h) + 3vh) 0 3vh;
+  display: flex;
+  align-items: center;
+}
+.story.is-animated .story-grid {
+  width: 100%;
+}
+.story.is-animated .story-steps {
+  display: grid;
+  gap: 0;
+  margin-top: 36px;
+}
+.story.is-animated .story-step {
+  grid-area: 1 / 1;
+}
+.story.is-animated .story-count {
+  display: block;
+}
+.story.is-animated .story-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+}
+.story.is-animated .story-visual {
+  height: min(78vh, 760px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story.is-animated .story-diagram {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 899px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+  .story-step .h3 {
+    font-size: clamp(1.5rem, 6.4vw, 2.1rem);
+  }
+  .story-step-body {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  .story.is-animated .story-pin {
+    align-items: flex-start;
+    padding: calc(var(--nav-h) + 20px) 0 16px;
+  }
+  .story.is-animated .story-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+  }
+  .story.is-animated .story-steps {
+    margin-top: 16px;
+  }
+  .story.is-animated .story-dots {
+    margin-top: 14px;
+  }
+  .story.is-animated .story-visual {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .story.is-animated .story-count {
+    position: relative;
+    flex: none;
+    height: 56px;
+    margin-top: 12px;
+  }
+  .story.is-animated .story-diagram {
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    height: auto;
+  }
+  .story.is-animated .story-panel {
+    display: none;
+  }
+  .story-count-num {
+    font-size: 2rem;
+  }
+  .story-count-lbl {
+    font-size: 0.62rem;
+  }
+}

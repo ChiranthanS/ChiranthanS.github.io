@@ -1,0 +1,378 @@
+.projects {
+  position: relative;
+  padding: clamp(96px, 14vh, 160px) 0;
+}
+
+.proj-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+.proj-head .h2 {
+  margin-top: 22px;
+}
+.proj-head-side {
+  max-width: 300px;
+  color: var(--fg-2);
+  text-align: right;
+}
+.proj-count {
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--fg-3);
+}
+.proj-count span {
+  color: var(--fg);
+}
+
+.proj-viewport {
+  margin-top: clamp(40px, 6vh, 64px);
+}
+.proj-track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 20px;
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.proj {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  overflow: hidden;
+  transition: border-color 0.4s;
+}
+.proj:hover {
+  border-color: var(--line-2);
+}
+
+.proj-visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.proj-art {
+  position: absolute;
+  inset: 0 -8%;
+}
+.proj-art .pv {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.proj-num {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--fg-3);
+}
+
+.proj-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px 26px 26px;
+}
+.proj-kicker {
+  font-family: var(--mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+.proj-name {
+  margin-top: 10px;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+.proj-desc {
+  margin: 10px 0 18px;
+  color: var(--fg-2);
+  font-size: 0.95rem;
+}
+.proj-links {
+  display: flex;
+  gap: 18px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+.proj-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--fg);
+  transition: color 0.25s;
+}
+.proj-links a:hover {
+  color: var(--signal);
+}
+.proj-links svg {
+  width: 16px;
+  height: 16px;
+}
+
+.proj-more a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 40px 32px;
+  min-height: 240px;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+.proj-more-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--fg-2);
+}
+.proj-more:hover .proj-more-cta {
+  color: var(--signal);
+}
+
+/* ---------- horizontal (desktop + motion) ---------- */
+.projects.is-horizontal {
+  padding: 0;
+}
+.is-horizontal .proj-pin {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+}
+.is-horizontal .proj-track {
+  display: flex;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  gap: 24px;
+  padding: 0 max(var(--gutter), calc((100vw - var(--maxw)) / 2));
+  will-change: transform;
+}
+.is-horizontal .proj {
+  width: clamp(340px, 34vw, 500px);
+}
+.is-horizontal .proj-visual {
+  aspect-ratio: auto;
+  height: min(30vh, 290px);
+}
+.is-horizontal .proj-body {
+  padding: 20px 24px 22px;
+}
+.is-horizontal .proj-links {
+  padding-top: 16px;
+}
+@media (max-height: 820px) {
+  .is-horizontal .proj-head .h2 {
+    font-size: clamp(2.2rem, 4.6vw, 4rem);
+  }
+  .is-horizontal .proj-viewport {
+    margin-top: 28px;
+  }
+  .is-horizontal .proj-visual {
+    height: 26vh;
+  }
+  .is-horizontal .proj-desc {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+}
+.is-horizontal .proj-more {
+  width: clamp(280px, 24vw, 360px);
+}
+
+/* ---------- illustrations ---------- */
+.pv {
+  display: block;
+}
+.pv-mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  fill: var(--fg-2);
+}
+.pv-dim {
+  fill: var(--fg-3);
+}
+.pv-ok {
+  fill: var(--ok);
+}
+.pv-big {
+  font-family: var(--font);
+  font-size: 44px;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  fill: var(--fg);
+}
+.pv-unit {
+  font-size: 22px;
+  fill: var(--fg-3);
+}
+.pv-spark {
+  stroke: var(--hue);
+  stroke-width: 2.5;
+  stroke-dasharray: 1;
+  animation: pv-draw 4s var(--ease) infinite;
+  filter: drop-shadow(0 0 6px var(--hue));
+}
+@keyframes pv-draw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  55%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.pv-bar,
+.pv-col {
+  fill: var(--hue);
+  opacity: 0.22;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pv-grow 3.2s var(--ease) infinite alternate;
+}
+.pv-col {
+  opacity: 0.55;
+}
+@keyframes pv-grow {
+  from {
+    transform: scaleY(0.35);
+  }
+}
+.pv-pod {
+  fill: none;
+  stroke: var(--hue);
+  stroke-width: 1.5;
+  animation: pv-pod 3.2s steps(1) infinite;
+}
+@keyframes pv-pod {
+  0%,
+  100% {
+    fill: rgba(79, 216, 255, 0.35);
+  }
+  50% {
+    fill: transparent;
+  }
+}
+
+.pv-term {
+  font-family: var(--mono);
+  font-size: 14px;
+  fill: var(--fg-2);
+  animation: pv-type 6s steps(1) infinite;
+}
+.pv-cmd {
+  fill: var(--fg);
+}
+.pv-prompt {
+  fill: var(--hue);
+}
+@keyframes pv-type {
+  0% {
+    opacity: 0;
+  }
+  8%,
+  92% {
+    opacity: 1;
+  }
+}
+
+.pv-route {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 2;
+  stroke-dasharray: 4 6;
+}
+.pv-route-live {
+  stroke: var(--hue);
+  stroke-width: 2.5;
+  stroke-dasharray: 1;
+  animation: pv-draw 5s linear infinite;
+}
+.pv-parcel {
+  fill: #fff;
+  filter: drop-shadow(0 0 8px var(--hue));
+}
+.pv-stop {
+  fill: var(--hue);
+}
+.pv-stop-ring {
+  fill: none;
+  stroke: var(--hue);
+  opacity: 0.4;
+}
+
+.pv-trip {
+  stroke: var(--hue);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  opacity: 0.6;
+  animation: pv-march 1.2s linear infinite;
+}
+@keyframes pv-march {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+.pv-pin path {
+  fill: var(--hue);
+}
+.pv-pin {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pv-bob 2.4s ease-in-out infinite;
+}
+@keyframes pv-bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.pv-graph line {
+  stroke: var(--hue);
+  stroke-opacity: 0.35;
+  stroke-width: 1.5;
+}
+.pv-graph circle {
+  fill: var(--hue);
+  animation: pv-blink 2.4s ease-in-out infinite;
+}
+@keyframes pv-blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 899px) {
+  .proj-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .proj-head-side {
+    text-align: left;
+  }
+  .proj-count {
+    display: none;
+  }
+}
